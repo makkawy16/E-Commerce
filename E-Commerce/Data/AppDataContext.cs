@@ -1,6 +1,12 @@
-﻿namespace E_Commerce.Data
+﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+namespace E_Commerce.Data
 {
-    public class AppDataContext : DBContext
+    public class AppDataContext : DbContext
     {
+        public AppDataContext(DbContextOptions<AppDataContext> options): base(options)
+        {
+                
+        }
     }
 }
