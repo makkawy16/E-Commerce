@@ -8,6 +8,7 @@ namespace E_Commerce.Controllers
 {
     public class AccountController : Controller
     {
+        bool logedIn = false;
 
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
@@ -48,12 +49,48 @@ namespace E_Commerce.Controllers
                 var claimsReuslt = await userManager.AddClaimsAsync(appUser, claim);
                 if (!claimsReuslt.Succeeded)
                     return BadRequest(claimsReuslt.Errors);
-
+                logedIn = true;
+                ViewBag.status = logedIn;
                 return RedirectToAction("Index" , "Home");
 
 
             }
             return View(model);
         }
+
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View(new LoginVm());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginVm model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = await userManager.FindByNameAsync(model.UserName);
+                if (user != null)
+                {
+                    bool isFound = await userManager.CheckPasswordAsync(user, model.Password);
+                    if (isFound)
+                    {
+
+                        await signInManager.SignInAsync(user,false);
+
+                        logedIn = true;
+                        ViewBag.status = logedIn;
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                }
+                ModelState.AddModelError("msg", "wrong username or password");
+            }
+
+            return View(model ?? new LoginVm());
+        }
     }
 }
+

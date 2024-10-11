@@ -28,14 +28,39 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"><p class="poppins-semibold">Privacy</p></a>
                         </li>
+
                     </ul>
                 </div>
                 <div class="left" id="login">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action=""><p class="poppins-semibold">Log in</p></a>
-                </div>
-                <div class="left">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register"><p class="poppins-semibold">Register</p></a>
-                </div>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><p class="poppins-semibold">Log in</p></a>
+                    </div>
+                    <div class="left">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register"><p class="poppins-semibold">Register</p></a>
+                    </div>
+               @*  @if (ViewBag.status == null)
+                {
+                    <div class="left" id="login">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><p class="poppins-semibold">Log in</p></a>
+                    </div>
+                    <div class="left">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register"><p class="poppins-semibold">Register</p></a>
+                    </div>
+                }
+                else if (!ViewBag.status)
+                {
+                 <div class="left" id="login">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><p class="poppins-semibold">Log in</p></a>
+                    </div>
+                    <div class="left">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register"><p class="poppins-semibold">Register</p></a>
+                    </div>
+                }
+                else
+                {
+                     <div class="left">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register"><p class="poppins-semibold">Logout</p></a>
+                    </div>
+                } *@
             </div>
         </nav>
     </header>

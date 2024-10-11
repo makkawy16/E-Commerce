@@ -19,7 +19,9 @@ namespace E_Commerce.Data
 
             builder.ApplyConfiguration(new EntityApplictaionUserConfiguration());
             builder.Entity<RegisterVm>().HasNoKey();
+            builder.Entity<LoginVm>().HasNoKey();
         }
-        public DbSet<E_Commerce.viewModels.RegisterVm> RegisterVm { get; set; } = default!;
+        public DbSet<E_Commerce.viewModels.LoginVm> LoginVm { get; set; } = default!;
+       // public DbSet<E_Commerce.viewModels.RegisterVm> RegisterVm { get; set; } = default!;
     }
 }
