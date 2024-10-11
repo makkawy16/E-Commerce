@@ -1,6 +1,8 @@
 using E_Commerce.Data;
+using E_Commerce.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+
 
 namespace E_Commerce
 {
@@ -13,6 +15,16 @@ namespace E_Commerce
             builder.Services.AddDbContext<AppDataContext>(option => option.UseSqlServer(connectionString));
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
+               option =>
+              {
+                  option.Password.RequireUppercase = false;
+                  option.Password.RequireLowercase = false;
+                  option.Password.RequireNonAlphanumeric = false;
+
+              })
+                .AddEntityFrameworkStores<AppDataContext>();
 
             var app = builder.Build();
 
