@@ -77,11 +77,11 @@ namespace E_Commerce.Controllers
                     bool isFound = await userManager.CheckPasswordAsync(user, model.Password);
                     if (isFound)
                     {
-
+                       // HttpContext.Session.SetString("UserName", model.UserName);
                         await signInManager.SignInAsync(user,false);
 
-                        logedIn = true;
-                        ViewBag.status = logedIn;
+                        //logedIn = true;
+                        //ViewBag.status = logedIn;
                         return RedirectToAction("Index", "Home");
                     }
 
@@ -90,6 +90,13 @@ namespace E_Commerce.Controllers
             }
 
             return View(model ?? new LoginVm());
+        }
+
+
+        public IActionResult Logout()
+        {
+            signInManager.SignOutAsync();
+            return RedirectToAction("Login");
         }
     }
 }

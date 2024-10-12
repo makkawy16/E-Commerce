@@ -14,7 +14,8 @@ namespace E_Commerce
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("No Connection String was found");
             builder.Services.AddDbContext<AppDataContext>(option => option.UseSqlServer(connectionString));
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews(); 
+            //builder.Services.AddSession(s => s.IdleTimeout = TimeSpan.FromMinutes(1));
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
                option =>
