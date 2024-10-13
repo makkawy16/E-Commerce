@@ -67,5 +67,45 @@ namespace E_Commerce.Controllers
             return View(category);
 
         }
+        [HttpGet]
+        public IActionResult Delete(int? Id)
+        {
+            if (Id == null | Id == 0)
+            {
+                return NotFound();
+            }
+
+
+            Category? categoryIndb = _context.categories.Find(Id);
+            return View(categoryIndb);
+
+        }
+
+
+        [HttpPost]
+        public IActionResult DeleteCategory(int? Id) //Different name because same parameters 
+        {
+            
+
+            // Find the category in the database by Id
+            var categoryIndb = _context.categories.Find(Id);
+
+            // Check if the category was not found
+            if (categoryIndb == null)
+            {
+                return NotFound(); // Return NotFound if category is not in the database
+            }
+
+            // Remove the found category from the database
+            _context.categories.Remove(categoryIndb);
+
+            // Save changes to persist the removal
+            _context.SaveChanges();
+
+            // Redirect to the Index action after successful deletion
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

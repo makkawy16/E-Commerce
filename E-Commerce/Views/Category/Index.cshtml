@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<Category>
 
     <h1>Category List</h1>
+<a asp-controller="Category" asp-action="Create"  class="btn btn-primary">
+    Create
+</a>
+<br />
 
     <table class=" table table-hover" width="100%">
 
@@ -19,7 +23,7 @@
             <td>
                 <a asp-controller ="Category" asp-action="Edit" asp-route-Id ="@item.Id"  class="btn btn-primary"> <i class=" bi bi-pencil-square"></i>Edit
                     </a>
-                <a asp-controller="Category" asp-action="Delete" class="btn btn-primary">
+                <a asp-controller="Category" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-primary">
                     <i class=" bi bi-pencil-square"></i>Delete
                 </a>
             </td>
