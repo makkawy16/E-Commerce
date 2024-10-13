@@ -30,10 +30,14 @@ namespace E_Commerce.Controllers
         //Controller is the link between model and the view
         public IActionResult Create(Category category)
         {
-            _context.categories.Add(category);
-            _context.SaveChanges(); 
-
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _context.categories.Add(category);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(category); //what was written remains
+           
         }
     }
 }
