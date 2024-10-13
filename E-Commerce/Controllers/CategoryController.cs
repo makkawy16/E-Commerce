@@ -40,5 +40,32 @@ namespace E_Commerce.Controllers
             return View(category); //what was written remains
            
         }
+
+        [HttpGet]
+        public IActionResult Edit(int? Id) {
+            if (Id == null | Id == 0)
+            {
+                NotFound();
+            }
+        
+
+            Category? categoryIndb = _context.categories.Find(Id);
+            return View (categoryIndb);
+        
+         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.categories.Update(category);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(category);
+
+        }
     }
 }

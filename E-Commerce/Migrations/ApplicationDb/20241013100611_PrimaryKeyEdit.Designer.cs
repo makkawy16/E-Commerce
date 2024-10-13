@@ -4,6 +4,7 @@ using E_Commerce.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241013100611_PrimaryKeyEdit")]
+    partial class PrimaryKeyEdit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,29 +47,6 @@ namespace E_Commerce.Migrations.ApplicationDb
                     b.HasKey("Id");
 
                     b.ToTable("categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedTime = new DateTime(2024, 10, 13, 13, 33, 28, 747, DateTimeKind.Local).AddTicks(938),
-                            Description = "Desc1",
-                            Name = "Category 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedTime = new DateTime(2024, 10, 13, 13, 33, 28, 747, DateTimeKind.Local).AddTicks(986),
-                            Description = "Desc2",
-                            Name = "Category 2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedTime = new DateTime(2024, 10, 13, 13, 33, 28, 747, DateTimeKind.Local).AddTicks(989),
-                            Description = "Desc3",
-                            Name = "Category 3"
-                        });
                 });
 #pragma warning restore 612, 618
         }

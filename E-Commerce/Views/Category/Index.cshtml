@@ -16,6 +16,18 @@
             <td>@item.Name</td>
             <td>@item.Description</td>
             <td>@item.CreatedTime</td>
+            <td>
+                <a asp-controller ="Category" asp-action="Edit" asp-route-Id ="@item.Id"  class="btn btn-primary"> <i class=" bi bi-pencil-square"></i>Edit
+                    </a>
+                <a asp-controller="Category" asp-action="Delete" class="btn btn-primary">
+                    <i class=" bi bi-pencil-square"></i>Delete
+                </a>
+            </td>
+              
+                
+
+            
+
 
         </tr>
     }
