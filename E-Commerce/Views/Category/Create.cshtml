@@ -1,0 +1,18 @@
+﻿@model Category
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control"/>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="index" asp-controller ="Category" class="btn btn-warning">Back to Index</a>
+    </div>
+
+
+</form>
