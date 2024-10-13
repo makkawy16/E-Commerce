@@ -26,6 +26,7 @@ namespace E_Commerce.Controllers
             return View();
         }
         [HttpPost]
+        [AutoValidateAntiforgeryToken] //Protects from Cross Side Frgery Attacks
         //we need to get info from user
         //Controller is the link between model and the view
         public IActionResult Create(Category category)
