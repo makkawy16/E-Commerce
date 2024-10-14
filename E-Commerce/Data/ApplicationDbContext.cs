@@ -10,6 +10,7 @@ namespace E_Commerce.Data
             
         }
         public DbSet<Category> categories { get; set; }
+        public DbSet<Product> products { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasData(

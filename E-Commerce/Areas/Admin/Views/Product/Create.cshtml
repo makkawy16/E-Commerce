@@ -1,0 +1,67 @@
+﻿@model E_Commerce.viewModels.ProductVM
+
+
+@{
+
+    ViewBag.PageTitle = "Product Management";
+    ViewBag.CardTitle = "Create Product";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="border p-3 mt-4">
+
+        @*<div asp-validation-summary="ModelOnly"></div>*@
+        <div class="mb-3 row p-1">
+            <label asp-for="Product.Name" class="p-0"></label>
+            <input asp-for="Product.Name" class="form-control" />
+            <span asp-validation-for="Product.Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Product.Description" class="p-0"></label>
+            <input asp-for="Product.Description" class="form-control" />
+            <span asp-validation-for="Product.Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Product.Price" class="p-0"></label>
+            <input asp-for="Product.Price" class="form-control" />
+            <span asp-validation-for="Product.Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 row p-1">
+            <label asp-for="Product.Img" class="p-0"></label>
+            <input type="file" name="file" id="imgfile" class="form-control" />
+
+        </div>
+
+        <div class="mb-3 row p-1">
+            <label asp-for="Product.CategoryId" class="p-0"></label>
+            <select asp-for="Product.CategoryId" class="form-control" asp-items="Model.CategoryList">
+
+                <option disabled selected>-- Select Category --</option>
+            </select>
+            <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Create</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-action="Index" class="btn btn-secondary border  form-control">
+                    Back to List
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
