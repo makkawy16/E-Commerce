@@ -46,8 +46,12 @@ namespace E_Commerce
             
                 app.MapControllerRoute(
                   name: "default",
-                  pattern: "{area=Admin}/{controller=Product}/{action=Create}/{id?}" );
-            
+                  pattern: "{area=Admin}/{controller=Home}/{action=Index}/{id?}" );
+            app.MapControllerRoute(
+                  name: "Customer",
+                  pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
+
+
             app.Run();
         }
     }
