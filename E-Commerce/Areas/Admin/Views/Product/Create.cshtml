@@ -1,6 +1,5 @@
-﻿@model E_Commerce.viewModels.ProductVM
-
-
+﻿@using E_Commerce.ViewModels
+@model ProductVM
 @{
 
     ViewBag.PageTitle = "Product Management";
@@ -27,22 +26,19 @@
             <input asp-for="Product.Price" class="form-control" />
             <span asp-validation-for="Product.Price" class="text-danger"></span>
         </div>
-
         <div class="mb-3 row p-1">
             <label asp-for="Product.Img" class="p-0"></label>
-            <input type="file" name="file" id="imgfile" class="form-control" />
-
+            <input type ="file" name="file" id ="imgfile" class="form-control" />
+            
         </div>
-
         <div class="mb-3 row p-1">
             <label asp-for="Product.CategoryId" class="p-0"></label>
-            <select asp-for="Product.CategoryId" class="form-control" asp-items="Model.CategoryList">
-
-                <option disabled selected>-- Select Category --</option>
-            </select>
-            <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+            <select asp-for="Product.CategoryId"  asp-items="Model.CategoryList"  class="form-control" >
+            <option disabled selected>-- Select Category --</option>
+         </select>
         </div>
-
+        
+        
         <div class="row">
             <div class="col-6 col-md-3">
                 <button type="submit" class="btn btn-primary form-control">Create</button>

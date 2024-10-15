@@ -12,7 +12,7 @@ namespace E_Commerce
         {
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("No Connection String was found");
-            builder.Services.AddDbContext<AppDataContext>(option => option.UseSqlServer(connectionString));
+            
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             //builder.Services.AddSession(s => s.IdleTimeout = TimeSpan.FromMinutes(1));
@@ -20,15 +20,7 @@ namespace E_Commerce
             builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
-               option =>
-              {
-                  option.Password.RequireUppercase = false;
-                  option.Password.RequireLowercase = false;
-                  option.Password.RequireNonAlphanumeric = false;
-
-              })
-                .AddEntityFrameworkStores<AppDataContext>();
+            
 
             var app = builder.Build();
 
@@ -54,7 +46,7 @@ namespace E_Commerce
             
                 app.MapControllerRoute(
                   name: "default",
-                  pattern: "{area=Admin}/{controller=Home}/{action=Index}/{id?}" );
+                  pattern: "{area=Admin}/{controller=Product}/{action=Create}/{id?}" );
             
             app.Run();
         }

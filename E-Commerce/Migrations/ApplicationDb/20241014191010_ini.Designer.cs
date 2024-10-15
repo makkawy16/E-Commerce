@@ -4,6 +4,7 @@ using E_Commerce.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241014191010_ini")]
+    partial class ini
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,21 +52,21 @@ namespace E_Commerce.Migrations.ApplicationDb
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2024, 10, 15, 10, 50, 30, 169, DateTimeKind.Local).AddTicks(5460),
+                            CreatedTime = new DateTime(2024, 10, 14, 22, 10, 7, 407, DateTimeKind.Local).AddTicks(8789),
                             Description = "Desc1",
                             Name = "Category 1"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2024, 10, 15, 10, 50, 30, 169, DateTimeKind.Local).AddTicks(5511),
+                            CreatedTime = new DateTime(2024, 10, 14, 22, 10, 7, 407, DateTimeKind.Local).AddTicks(8848),
                             Description = "Desc2",
                             Name = "Category 2"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedTime = new DateTime(2024, 10, 15, 10, 50, 30, 169, DateTimeKind.Local).AddTicks(5514),
+                            CreatedTime = new DateTime(2024, 10, 14, 22, 10, 7, 407, DateTimeKind.Local).AddTicks(8853),
                             Description = "Desc3",
                             Name = "Category 3"
                         });
@@ -84,15 +87,15 @@ namespace E_Commerce.Migrations.ApplicationDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Img")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("category")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

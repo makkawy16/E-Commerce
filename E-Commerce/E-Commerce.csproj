@@ -10,8 +10,8 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="NewFolder\" />
-    <Folder Include="wwwroot\NImages\Products\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="wwwroot\Images\Products\" />
   </ItemGroup>
 
   <ItemGroup>

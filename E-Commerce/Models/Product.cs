@@ -8,23 +8,28 @@ namespace E_Commerce.Models
 {
     public class Product
     {
+        [Required]  
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
-        public string Description { get; set; }
-
+        public string? Name { get; set; }
+        public string? Description { get; set; }
         [DisplayName("Image")]
         [ValidateNever]
-        public string Img { get; set; }
-
+        public string? Img { get; set; }
         [Required]
-        public string Price { get; set; }
+        public string? Price { get; set; }
 
         [Required]
         [DisplayName("Category")]
-        [ValidateNever]
-        public int CategoryId { get; set; } //one to many relationship where parent is category
-        // Navigation property for related Category
-        public Category Category { get; set; }
+        [ValidateNever] 
+        public int CategoryId { get; set; } 
+        public Category? Category { get; set; }      
+
+
+
+       
+
+       }
     }
-}
+
+
