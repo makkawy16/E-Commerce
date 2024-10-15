@@ -158,6 +158,40 @@ namespace E_Commerce.Areas.Admin.Controllers
 
         }
 
+        [HttpDelete]
+        public IActionResult Delete(int? Id)
+        {
+
+            // Find the category in the database by Id
+            var productIndb = _context.products.Find(Id);
+
+            // Check if the category was not found
+            if (productIndb == null)
+            {
+                return Json(new { success = false, message = "Error While Deleting" }); // Return NotFound if category is not in the database
+            }
+
+            // Remove the found category from the database
+            _context.products.Remove(productIndb);
+            //remove photo from database
+            var oldimg = Path.Combine(_webHostEnvironment.WebRootPath, productIndb.Img.TrimStart('\\'));
+            if (System.IO.File.Exists(oldimg))
+            {
+
+                System.IO.File.Delete(oldimg);
+            }
+
+            // Save changes to persist the removal
+            _context.SaveChanges();
+           return  Json(new { success = true, message = "File Has Been Deleted" });
+            
+
+            // Redirect to the Index action after successful deletion
+           
+        }
 
     }
-}
+
+
+    }
+
