@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "products";
+}
+
+ @* @model IEnumerable<Product> <!-- Assuming you pass a list of Product objects from the controller -->
+ *@
+@{
+    ViewBag.Title = "Product Management";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="/css/StyleSheet.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>Product Management</h3>
+        </div>
+        <div class="card-body">
+            <a href="@Url.Action("Create", "Products")" class="btn btn-primary mb-3">Create</a>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Created Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td>@product.Name</td>
+                            <td>@product.Description</td>
+                            <td>@product.Price.ToString("C")</td> <!-- Format as currency -->
+                            <td>@product.Stock</td>
+                            <td>@product.CreatedTime.ToString("g")</td> <!-- General date/time pattern -->
+                            <td>
+                                <a href="@Url.Action("Edit", "Products", new { id = product.Id })" class="btn btn-success">Edit</a>
+                                <a href="@Url.Action("Delete", "Products", new { id = product.Id })" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
