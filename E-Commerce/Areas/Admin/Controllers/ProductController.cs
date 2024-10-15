@@ -9,6 +9,8 @@ using E_Commerce.Models; // For the Product model
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using E_Commerce.ViewModels;
+using static System.Net.Mime.MediaTypeNames;
+using Microsoft.EntityFrameworkCore;
 namespace E_Commerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -23,12 +25,23 @@ namespace E_Commerce.Areas.Admin.Controllers
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
+        
         public IActionResult Index()
         {
-            var products = _context.products.ToList();
-            return View(products);
+
+            return View();
+            
+        }
+        public IActionResult GetData()
+        {
+
+            var products = _context.products.Include(p=>p.Category).ToList();
+                       
+            return Json(new { data = products });
+
 
         }
+
 
         // GET: Product/Index (Read All)
 
@@ -74,23 +87,23 @@ namespace E_Commerce.Areas.Admin.Controllers
                         file.CopyTo(filestream);
                     }
                     productVM.Product.Img = @"Images\Products\" + filename + ext;
-
                 }
+                
+                
                 _context.products.Add(productVM.Product);
                 _context.SaveChanges();
                 TempData["Create"] = "Item Has Been Created Succesfully";
                 return RedirectToAction("Index");   
-
-                 
-
-
-
             }
             return View(productVM);
 
-
-
-
         }
+
+        public IActionResult Edit()
+        { return View(); }  
+
+        public IActionResult Delete() { return View(); }    
+
+
     }
 }

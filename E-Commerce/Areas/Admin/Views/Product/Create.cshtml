@@ -1,4 +1,4 @@
-﻿@using E_Commerce.ViewModels
+﻿
 @model ProductVM
 @{
 
@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_Dashboard.cshtml";
 }
 
-<form asp-action="Create" method="post" enctype="multipart/form-data">
+<form  asp-action="Create"  method="post" enctype="multipart/form-data">
     <div class="border p-3 mt-4">
 
         @*<div asp-validation-summary="ModelOnly"></div>*@
@@ -28,8 +28,9 @@
         </div>
         <div class="mb-3 row p-1">
             <label asp-for="Product.Img" class="p-0"></label>
-            <input type ="file" name="file" id ="imgfile" class="form-control" />
-            
+            <input type="file" name="file" id="imgfile" class="form-control" />
+
+        
         </div>
         <div class="mb-3 row p-1">
             <label asp-for="Product.CategoryId" class="p-0"></label>
