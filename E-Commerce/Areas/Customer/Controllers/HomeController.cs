@@ -1,5 +1,7 @@
 ﻿using E_Commerce.Data;
+using E_Commerce.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce.Areas.Customer.Controllers
 {
@@ -22,10 +24,22 @@ namespace E_Commerce.Areas.Customer.Controllers
   
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int Id)
         {
-            var products = _context.products.ToList();
-            return View(products);
+            ShoppingCart shoppingCart = new ShoppingCart()
+            {
+
+                Product = _context.products
+                                  .Include(p => p.Category)
+                                  .FirstOrDefault(p => p.Id == Id),
+                Count = 1
+
+
+            };
+
+            
+            
+            return View(shoppingCart);
 
 
 
