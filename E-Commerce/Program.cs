@@ -24,7 +24,8 @@ namespace E_Commerce
             builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders().AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders().AddDefaultUI()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddSingleton<IEmailSender, EmailSender>(); 
             
 

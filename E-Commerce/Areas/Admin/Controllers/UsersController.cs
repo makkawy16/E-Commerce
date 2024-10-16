@@ -1,4 +1,6 @@
 ﻿using E_Commerce.Data;
+using E_Commerce.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Security.Claims;
@@ -6,6 +8,7 @@ using System.Security.Claims;
 namespace E_Commerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.AdminRole)]
     public class UsersController : Controller
     {
         private readonly ApplicationDbContext _context;
