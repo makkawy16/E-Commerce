@@ -145,7 +145,23 @@ namespace E_Commerce.Areas.Identity.Pages.Account
 
 
                     _logger.LogInformation("User created a new account with password.");
-                    await _userManager.AddToRoleAsync(user, SD.CustomerRole);   
+                    //want to redirect for users if made users by admin
+                    string role = HttpContext.Request.Form["RoleRadio"].ToString();
+                    if (string.IsNullOrEmpty(role)) {
+
+                        await _userManager.AddToRoleAsync(user, SD.CustomerRole);
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return LocalRedirect(returnUrl);
+
+
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, role);
+
+
+                    }
+                    return RedirectToAction ("Index", "Users" , new {area ="Admin"});  
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -165,8 +181,7 @@ namespace E_Commerce.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        
                     }
                 }
                 foreach (var error in result.Errors)

@@ -25,5 +25,7 @@ namespace E_Commerce.Areas.Admin.Controllers
 
             return View(_context.ApplicationUsers.Where(x=>x.Id !=userid).ToList());
         }
+
+
     }
 }
