@@ -1,6 +1,8 @@
 using E_Commerce.Data;
 using E_Commerce.Models;
+using E_Commerce.Utility;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -15,13 +17,15 @@ namespace E_Commerce
             
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddRazorPages();
+
             //builder.Services.AddSession(s => s.IdleTimeout = TimeSpan.FromMinutes(1));
             //Register Database Connection
             builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
-
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders().AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddSingleton<IEmailSender, EmailSender>(); 
             
 
             var app = builder.Build();
@@ -40,6 +44,7 @@ namespace E_Commerce
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthorization();
 
             app.MapRazorPages();
 
@@ -50,10 +55,10 @@ namespace E_Commerce
             
                 app.MapControllerRoute(
                   name: "default",
-                  pattern: "{area=Admin}/{controller=Home}/{action=Index}/{id?}" );
+                  pattern: "{Area=Admin}/{controller=Home}/{action=Index}/{id?}" );
             app.MapControllerRoute(
                   name: "Customer",
-                  pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
+                  pattern: "{Area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 
             app.Run();
